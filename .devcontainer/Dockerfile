@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     openjdk-21-jdk \
     maven \
     mysql-server \
+    chromium-browser \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "CREATE USER 'sergio'@'localhost' IDENTIFIED BY 'q1w2e3r4'; \
@@ -19,6 +20,16 @@ RUN service mysql start && \
     sleep 5 && \
     mysql -uroot < /tmp/script.sql && \
     service mysql stop
+
+ENV FLUTTER_VERSION=3.35.0
+
+RUN git clone https://github.com/flutter/flutter.git /opt/flutter \
+    && cd /opt/flutter \
+    && git checkout $FLUTTER_VERSION
+    
+ENV PATH="/opt/flutter/bin:/opt/flutter/bin/cache/dart-sdk/bin:${PATH}"
+
+RUN flutter doctor
 
 WORKDIR /workspaces/tecnicas-avancadas-de-programacao-web-e-mobile
 
