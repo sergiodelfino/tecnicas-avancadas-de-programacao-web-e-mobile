@@ -20,6 +20,6 @@ RUN service mysql start && \
     mysql -uroot < /tmp/script.sql && \
     service mysql stop
 
-WORKDIR /workspaces
+WORKDIR /workspaces/tecnicas-avancadas-de-programacao-web-e-mobile
 
 CMD [ "bash" ]
