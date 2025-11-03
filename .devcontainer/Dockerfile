@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN echo "CREATE USER 'sergio'@'localhost' IDENTIFIED BY 'q1w2e3r4'; \
         GRANT ALL PRIVILEGES ON *.* TO 'sergio'@'localhost' WITH GRANT OPTION; \
-        DELETE FROM mysql.user WHERE User=''; \
         FLUSH PRIVILEGES;" > /tmp/script.sql
 
 RUN service mysql start && \
