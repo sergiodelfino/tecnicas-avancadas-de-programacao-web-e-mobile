@@ -3,12 +3,14 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    chromium-browser \
+    curl \
     git \
     git-lfs \
-    openjdk-21-jdk \
     maven \
     mysql-server \
-    chromium-browser \
+    openjdk-21-jdk \
+    unzip \    
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "CREATE USER 'sergio'@'localhost' IDENTIFIED BY 'q1w2e3r4'; \
